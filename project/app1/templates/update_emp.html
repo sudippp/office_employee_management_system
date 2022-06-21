@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %}Update Employee{% endblock %}
+
+{% block body %}
+<!-- container -->
+{% if user.is_authenticated %}
+<div class="contanier my-2 text-center">
+    <div class="row featurette d-flex justify-content-center align-items-center">
+
+        <form style="padding: 10px; text-align: center;" method="post" action="">
+            {% csrf_token %}
+            <h4 style="color:#3582af">Search by Employee ID : <input type="number" name="ID"></h4>
+            <table class="table table-success table-striped" style="text-align: center; font-size: .9vw;">
+                <thead>
+                    <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Bonus</th>
+                        <th scope="col">Email ID</th>
+                        <th scope="col">Phone Number</th>
+                    </tr>
+                </thead>
+                {% for emp_id in emp_id %}
+                <tbody>
+                    <tr>
+                        <td>{{emp_id.first_name}}</td>
+                        <td>{{emp_id.last_name}}</td>
+                        <td>{{emp_id.department}}</td>
+                        <td>{{emp_id.role}}</td>
+                        <td>{{emp_id.salary}}</td>
+                        <td>{{emp_id.bonus}}</td>
+                        <td>{{emp_id.email_id}}</td>
+                        <td>{{emp_id.phone_number}}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+                <thead>
+                    <tr>
+                        <th scope="col">UPDATE</th>
+                        <th scope="col">UPDATE</th>
+                        <th scope="col">UPDATE</th>
+                        <th scope="col">UPDATE</th>
+                        <th scope="col">UPDATE</th>
+                        <th scope="col">UPDATE</th>
+                        <th scope="col">UPDATE</th>
+                        <th scope="col">UPDATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="first_name"></td>
+                        <td><input type="text" name="last_name"></td>
+                        <td><input type="number" name="department"></td>
+                        <td><input type="number" name="role"></td>
+                        <td><input type="number" name="salary"></td>
+                        <td><input type="number" name="bonus"></td>
+                        <td><input type="email" name="email"></td>
+                        <td><input type="number" name="phone_number"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" name="submit" class="btn btn-primary">
+        </form>
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center;">
+            {% if messages %}
+            {% for messages in messages %}
+            <h2>{{messages}}</h2>
+            <a href="/manager_access" class="btn btn-primary active" aria-current="page">Home Page</a>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{%else%}
+<div class="contanier my-2 text-center">
+    <div class="row featurette d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+            <h1 style="color:red">Your Have no Access</h1>
+        </div>
+        <div class="col-md-5">
+            <img src="https://source.unsplash.com/500x500/?technology" alt="missing"
+                class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock body %}

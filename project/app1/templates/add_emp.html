@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Add Employee{% endblock %}
+{% block body %}
+<!-- container -->
+{% if user.is_authenticated %}
+<div class="contanier my-2 ">
+    <div class="row featurette d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+            {% if messages %}
+            {% for messages in messages %}
+            <div class="alert alert-dark alert-dismissible fade show" role="alert" style="text-align: center;">
+                <h2>{{messages}}</h2>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <h2 class="featurette-heading text-center" style="color: #4e7ad3">Manager Access<span class="text-muted">Add
+                    Employee</span></h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        <form action="" method="post" style="color: white; font-size: 1.5vw;">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label text-left">First Name</label><br>
+                                {{empfrom.first_name}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label text-left">Last Name</label><br>
+                                {{empfrom.last_name}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label text-left">Employee Id</label><br>
+                                {{empfrom.employee_id}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label text-left">Department</label><br>
+                                {{empfrom.department}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label text-left">Role</label><br>
+                                {{empfrom.role}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label text-left">Salary</label><br>
+                                {{empfrom.salary}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label text-left">Bonus</label><br>
+                                {{empfrom.bonus}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label text-left">Phone Number</label><br>
+                                {{empfrom.phone_number}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label text-left">Email Id</label><br>
+                                {{empfrom.email_id}}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-5 text-center">
+            <img src="{% static 'images/coding7.png' %}" alt="missing"
+                class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400vw" height="600vh">
+        </div> -->
+    </div>
+</div>
+{%else%}
+<div class="contanier my-2 text-center">
+    <div class="row featurette d-flex justify-content-center align-items-center">
+        <div class="col-md-7">
+            <h1 style="color:red">Your Have no Access</h1>
+        </div>
+        <div class="col-md-5 text-center">
+            <img src="https://source.unsplash.com/500x500/?technology" alt="missing"
+                class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock body %}
